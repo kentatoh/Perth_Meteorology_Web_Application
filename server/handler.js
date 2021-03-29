@@ -9,3 +9,5 @@ function reqStart(req, res) {
   });
   fs.createReadStream("../html/index.html", "utf-8").pipe(res);
 }
+
+exports.reqStart = reqStart;
