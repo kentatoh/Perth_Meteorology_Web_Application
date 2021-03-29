@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../css/index.css" />
+    <title>Perth's Meteorology Information & Data</title>
+  </head>
+  <body>
+    <div class="body-container">
+      <div class="form-container">
+        <h1>Perth's Meteorology Information & Data</h1>
+        <form>
+          <label for="measurement">Measurement</label>
+          <input
+            type="radio"
+            id="windspeed"
+            name="measurement"
+            value="windspeed"
+            required="required"
+          />
+          <label for="windspeed">Wind Speed</label>
+          <input
+            type="radio"
+            id="solarradiation"
+            name="measurement"
+            value="solarradiation"
+          />
+          <label for="solarradiation">Solar Radiation</label>
+          <input
+            type="radio"
+            id="measurement-both"
+            name="measurement"
+            value="measurement-both"
+          />
+          <label for="measurement-both">Both</label>
+          <br />
+
+          <label for="start-month">Month</label>
+          <select id="start-month">
+            <option>Jan</option>
+            <option>Feb</option>
+            <option>Mar</option>
+            <option>May</option>
+            <option>Jun</option>
+            <option>Jul</option>
+            <option>Aug</option>
+            <option>Sep</option>
+            <option>Oct</option>
+            <option>Nov</option>
+            <option>Dec</option>
+          </select>
+          -
+          <select id="end-month">
+            <option>Jan</option>
+            <option>Feb</option>
+            <option>Mar</option>
+            <option>May</option>
+            <option>Jun</option>
+            <option>Jul</option>
+            <option>Aug</option>
+            <option>Sep</option>
+            <option>Oct</option>
+            <option>Nov</option>
+            <option>Dec</option>
+          </select>
+          <br />
+
+          <label for="year">Year</label>
+          <select id="year">
+            <option>2007</option>
+            <option>2008</option>
+            <option>2009</option>
+            <option>2010</option>
+            <option>2011</option>
+            <option>2012</option>
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+            <option>2016</option>
+          </select>
+          <br />
+
+          <label for="output">Output</label>
+          <input
+            type="radio"
+            id="table"
+            name="output"
+            value="table"
+            required="required"
+          />
+          <label for="table">Table</label>
+          <input type="radio" id="graph" name="output" value="graph" />
+          <label for="graph">Graph</label>
+          <input
+            type="radio"
+            id="output-both"
+            name="output"
+            value="output-both"
+          />
+          <label for="output-both">Both</label>
+          <br />
+          <button type="submit" id="select">Submit</button>
+        </form>
+      </div>
+      <div class="table-container"></div>
+      <div class="graph-container"></div>
+    </div>
+  </body>
+</html>
