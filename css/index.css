@@ -1,0 +1,27 @@
+body {
+  font-family: Helvetica, sans-serif;
+  background-color: #e7efc5;
+  z-index: -999;
+}
+.body-container {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  color: #413c58;
+  padding: 5% 0 5% 0;
+}
+
+.form-container {
+  text-align: start;
+  margin: 0 auto;
+  background-color: #a3c4bc;
+  color: #413c58;
+}
+
+.table-container {
+  background-color: green;
+}
+
+.graph-container {
+  background-color: yellow;
+}
