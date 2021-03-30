@@ -29,34 +29,11 @@
                 <label for="measurement">Measurement</label>
               </div>
               <div class="col-xs-6 col-md-3">
-                <input
-                  type="radio"
-                  id="windspeed"
-                  name="measurement"
-                  value="windspeed"
-                  checked="checked"
-                  required="required"
-                />
-                <label for="windspeed">Wind Speed</label>
-              </div>
-              <div class="col-xs-6 col-md-3">
-                <input
-                  type="radio"
-                  id="solarradiation"
-                  name="measurement"
-                  value="solarradiation"
-                />
-                <label for="solarradiation">Solar Radiation</label>
-              </div>
-              <div class="col-xs-6 col-md-3">
-                <input
-                  type="radio"
-                  id="measurement-both"
-                  name="measurement"
-                  value="measurement-both"
-                />
-                <span class="radio-button"></span>
-                <label for="measurement-both">Both</label>
+                <select id="measurement" class="form-control">
+                  <option value="windspeed">Wind Speed</option>
+                  <option value="solarradiation">Solar Radiation</option>
+                  <option value="measurement-both">Both</option>
+                </select>
               </div>
             </div>
 
@@ -119,8 +96,6 @@
                   <option value="2016">2016</option>
                 </select>
               </div>
-              <div class="col-xs-6 col-md-3"></div>
-              <div class="col-xs-6 col-md-3"></div>
             </div>
 
             <div class="row">
@@ -128,28 +103,11 @@
                 <label for="output">Output</label>
               </div>
               <div class="col-xs-6 col-md-3">
-                <input
-                  type="radio"
-                  id="table"
-                  name="output"
-                  value="table"
-                  checked="checked  "
-                  required="required"
-                />
-                <label for="table">Table</label>
-              </div>
-              <div class="col-xs-6 col-md-3">
-                <input type="radio" id="graph" name="output" value="graph" />
-                <label for="graph">Graph</label>
-              </div>
-              <div class="col-xs-6 col-md-3">
-                <input
-                  type="radio"
-                  id="output-both"
-                  name="output"
-                  value="output-both"
-                />
-                <label for="output-both">Both</label>
+                <select id="output" class="form-control">
+                  <option value="table">Table</option>
+                  <option value="graph">Graph</option>
+                  <option value="output-both">Both</option>
+                </select>
               </div>
             </div>
 

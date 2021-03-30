@@ -11,18 +11,32 @@ body {
   padding: 3% 0 5% 0;
 }
 
+.body-container h1 {
+  font-weight: bold;
+}
+
 .form-container {
-  text-align: start;
+  text-align: center;
   margin: 5%;
   background-color: #98c1d9;
   color: #293241;
   padding: 3%;
   width: 50%;
+  border-radius: 1em;
 }
 
 .form-container label {
   font-size: 16px;
-  margin: 0 auto;
+  font-weight: bold;
+}
+
+.form-container select {
+  border: 0;
+  outline: 0;
+  font-size: 15px;
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .form-container button {
@@ -36,16 +50,8 @@ body {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-}
-
-.form-container select {
-  border: 0;
-  outline: 0;
-  font-size: 13px;
-  width: 60%;
-  min-width: 75px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  font-weight: bold;
+  border-radius: 1em;
 }
 
 .row {
