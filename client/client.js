@@ -17,13 +17,19 @@ $(function () {
     if (inputStartMonth > inputEndMonth) {
       alert("Starting month should be before ending month!");
     } else {
-      var obj = {
+      const obj = {
         year: inputYear,
         startMonth: inputStartMonth,
         endMonth: inputEndMonth,
       };
       var json = JSON.stringify(obj);
       console.log(json);
+
+      $.post("/search", json, function (data) {
+        console.log(data);
+        const objJSON = JSON.parse(data);
+        console.log(objJSON);
+      });
     }
   });
 });
