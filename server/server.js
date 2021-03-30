@@ -1,6 +1,6 @@
 "use strict";
 
-var http = required("http");
+var http = require("http");
 var url = require("url");
 
 const port = 40541;
