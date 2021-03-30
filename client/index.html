@@ -3,108 +3,160 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
     <link rel="stylesheet" type="text/css" href="/indexCss" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <title>Perth's Meteorology Information & Data</title>
   </head>
   <body>
     <div class="body-container">
       <h1>Perth's Meteorology<br />Information & Data</h1>
-      <div class="form-container">
+      <div class="form-container container">
         <form>
-          <label for="measurement">Measurement</label>
-          <input
-            type="radio"
-            id="windspeed"
-            name="measurement"
-            value="windspeed"
-            required="required"
-          />
-          <label for="windspeed">Wind Speed</label>
-          <input
-            type="radio"
-            id="solarradiation"
-            name="measurement"
-            value="solarradiation"
-          />
-          <label for="solarradiation">Solar Radiation</label>
-          <input
-            type="radio"
-            id="measurement-both"
-            name="measurement"
-            value="measurement-both"
-          />
-          <label for="measurement-both">Both</label>
-          <br />
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-6 col-md-3">
+                <label for="measurement">Measurement</label>
+              </div>
+              <div class="col-xs-6 col-md-3">
+                <input
+                  type="radio"
+                  id="windspeed"
+                  name="measurement"
+                  value="windspeed"
+                  required="required"
+                />
+                <label for="windspeed">Wind Speed</label>
+              </div>
+              <div class="col-xs-6 col-md-3">
+                <input
+                  type="radio"
+                  id="solarradiation"
+                  name="measurement"
+                  value="solarradiation"
+                />
+                <label for="solarradiation">Solar Radiation</label>
+              </div>
+              <div class="col-xs-6 col-md-3">
+                <input
+                  type="radio"
+                  id="measurement-both"
+                  name="measurement"
+                  value="measurement-both"
+                />
+                <span class="radio-button"></span>
+                <label for="measurement-both">Both</label>
+              </div>
+            </div>
 
-          <label for="start-month">Month</label>
-          <select id="start-month">
-            <option>Jan</option>
-            <option>Feb</option>
-            <option>Mar</option>
-            <option>May</option>
-            <option>Jun</option>
-            <option>Jul</option>
-            <option>Aug</option>
-            <option>Sep</option>
-            <option>Oct</option>
-            <option>Nov</option>
-            <option>Dec</option>
-          </select>
-          -
-          <select id="end-month">
-            <option>Jan</option>
-            <option>Feb</option>
-            <option>Mar</option>
-            <option>May</option>
-            <option>Jun</option>
-            <option>Jul</option>
-            <option>Aug</option>
-            <option>Sep</option>
-            <option>Oct</option>
-            <option>Nov</option>
-            <option>Dec</option>
-          </select>
-          <br />
+            <div class="row">
+              <div class="col-xs-6 col-md-3">
+                <label for="start-month">Start Month</label>
+              </div>
+              <div class="col-xs-6 col-md-3">
+                <select id="start-month" class="form-control">
+                  <option>Jan</option>
+                  <option>Feb</option>
+                  <option>Mar</option>
+                  <option>May</option>
+                  <option>Jun</option>
+                  <option>Jul</option>
+                  <option>Aug</option>
+                  <option>Sep</option>
+                  <option>Oct</option>
+                  <option>Nov</option>
+                  <option>Dec</option>
+                </select>
+              </div>
+              <div class="col-xs-6 col-md-3">
+                <label for="end-month">End Month</label>
+              </div>
+              <div class="col-xs-6 col-md-3">
+                <select id="end-month" class="form-control">
+                  <option>Jan</option>
+                  <option>Feb</option>
+                  <option>Mar</option>
+                  <option>May</option>
+                  <option>Jun</option>
+                  <option>Jul</option>
+                  <option>Aug</option>
+                  <option>Sep</option>
+                  <option>Oct</option>
+                  <option>Nov</option>
+                  <option>Dec</option>
+                </select>
+              </div>
+            </div>
 
-          <label for="year">Year</label>
-          <select id="year">
-            <option>2007</option>
-            <option>2008</option>
-            <option>2009</option>
-            <option>2010</option>
-            <option>2011</option>
-            <option>2012</option>
-            <option>2013</option>
-            <option>2014</option>
-            <option>2015</option>
-            <option>2016</option>
-          </select>
-          <br />
+            <div class="row">
+              <div class="col-xs-6 col-md-3">
+                <label for="year">Year</label>
+              </div>
+              <div class="col-xs-6 col-md-3">
+                <select id="year" class="form-control">
+                  <option>2007</option>
+                  <option>2008</option>
+                  <option>2009</option>
+                  <option>2010</option>
+                  <option>2011</option>
+                  <option>2012</option>
+                  <option>2013</option>
+                  <option>2014</option>
+                  <option>2015</option>
+                  <option>2016</option>
+                </select>
+              </div>
+              <div class="col-xs-6 col-md-3"></div>
+              <div class="col-xs-6 col-md-3"></div>
+            </div>
 
-          <label for="output">Output</label>
-          <input
-            type="radio"
-            id="table"
-            name="output"
-            value="table"
-            required="required"
-          />
-          <label for="table">Table</label>
-          <input type="radio" id="graph" name="output" value="graph" />
-          <label for="graph">Graph</label>
-          <input
-            type="radio"
-            id="output-both"
-            name="output"
-            value="output-both"
-          />
-          <label for="output-both">Both</label>
-          <br />
-          <button type="submit" id="select">Submit</button>
+            <div class="row">
+              <div class="col-xs-6 col-md-3">
+                <label for="output">Output</label>
+              </div>
+              <div class="col-xs-6 col-md-3">
+                <input
+                  type="radio"
+                  id="table"
+                  name="output"
+                  value="table"
+                  required="required"
+                />
+                <label for="table">Table</label>
+              </div>
+              <div class="col-xs-6 col-md-3">
+                <input type="radio" id="graph" name="output" value="graph" />
+                <label for="graph">Graph</label>
+              </div>
+              <div class="col-xs-6 col-md-3">
+                <input
+                  type="radio"
+                  id="output-both"
+                  name="output"
+                  value="output-both"
+                />
+                <label for="output-both">Both</label>
+              </div>
+            </div>
+
+            <div class="row button">
+              <div class="col">
+                <button type="submit" id="select">Submit</button>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
-      <div class="table-container"></div>
-      <div class="graph-container"></div>
+      <div class="table-container container"></div>
+      <div class="graph-container container"></div>
     </div>
   </body>
 </html>
