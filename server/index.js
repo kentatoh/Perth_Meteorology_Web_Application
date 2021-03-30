@@ -6,7 +6,9 @@ const handlers = require("./handler");
 
 var handle = {
   "/": handlers.reqStart,
-  "/indexCss": handlers.indexCss,
+  "/indexCSS": handlers.indexCSS,
+  "/clientJS": handlers.clientJS,
+  "/search": handlers.search,
   error: handlers.error,
 };
 

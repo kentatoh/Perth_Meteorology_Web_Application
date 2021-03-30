@@ -10,12 +10,29 @@ function reqStart(req, res) {
   fs.createReadStream("../client/index.html", "utf-8").pipe(res);
 }
 
-function indexCss(req, res) {
+function indexCSS(req, res) {
   console.log("Index CSS function was called");
   res.writeHead(200, {
     "Content-Type": "text/css",
   });
   fs.createReadStream("../css/index.css").pipe(res);
+}
+
+function clientJS(req, res) {
+  console.log("Client JS function was called");
+  res.writeHead(200, {
+    "Content-Type": "text/js",
+  });
+  fs.createReadStream("../client/client.js").pipe(res);
+}
+
+function search(req, res) {
+  console.log("Search function was called");
+  var data = "";
+  req.on("data", function (chunk) {
+    data += chunk;
+    console.log(data);
+  });
 }
 
 function error(req, res) {
@@ -28,5 +45,7 @@ function error(req, res) {
 }
 
 exports.reqStart = reqStart;
-exports.indexCss = indexCss;
+exports.indexCSS = indexCSS;
+exports.clientJS = clientJS;
+exports.search = search;
 exports.error = error;

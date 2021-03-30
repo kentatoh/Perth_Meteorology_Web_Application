@@ -4,7 +4,7 @@ body {
 }
 
 .body-container {
-  width: 33%;
+  width: 55%;
   margin: 0 auto;
   text-align: center;
   color: #293241;
@@ -43,6 +43,7 @@ body {
   outline: 0;
   font-size: 13px;
   width: 60%;
+  min-width: 75px;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
