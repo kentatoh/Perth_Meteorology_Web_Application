@@ -1,9 +1,8 @@
 "use strict";
 
-const { httpify } = require("caseless");
 const fs = require("fs");
 const request = require("request");
-const http = require("http");
+const xml = require("xml2json");
 
 function reqStart(req, res) {
   console.log("Start function was called");
@@ -48,28 +47,51 @@ function search(req, res) {
 
     if (intYear >= 2007 && intYear <= 2009) {
       // XML files
+      // Request module to get remote file, process then store into a variable
+      // Variable to be returned to the client side
+      request.get(
+        `http://it.murdoch.edu.au/~S900432D/ict375/data/${year}.xml`,
+        function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+            // No error and good status code
+            console.log("Retrieving XML file ...");
+            var data = xml.toJson(body); // XML data to JSON using xml2json module
+            var objJSON = JSON.parse(data); // Parse JSON to JSON object
+            var processedObj = processData(startMonth, endMonth, objJSON); // Process the JSON object
+            var toReturn = JSON.stringify(processedObj); // Return to client as a string
+            res.end(toReturn);
+          } else {
+            // Error or bad status code
+            console.log(error);
+          }
+        }
+      );
     } else if (intYear >= 2010 && intYear <= 2016) {
       // JSON files
-      // Request module to get remote file and store into a variable
+      // Request module to get remote file, process then store into a variable
+      // Variable to be returned to the client side
       request.get(
         `http://it.murdoch.edu.au/~S900432D/ict375/data/${year}.json`,
         function (error, response, body) {
           if (!error && response.statusCode == 200) {
-            console.log("Retrieving JSON file");
-            var data = body;
-            var objJSON = JSON.parse(data);
-            var processedObj = processDataJSON(objJSON, startMonth, endMonth);
+            // No error and good status code
+            console.log("Retrieving JSON file ...");
+            var objJSON = JSON.parse(body); // Parse JSON into JSON object
+            var processedObj = processData(startMonth, endMonth, objJSON);
             var toReturn = JSON.stringify(processedObj);
             res.end(toReturn);
+          } else {
+            // Eerror or bad status code
+            console.log(error);
           }
         }
       );
     }
   });
 }
-var processDataXML = function (obj, startMonth, endMonth) {};
-var processDataJSON = function (obj, startMonth, endMonth) {
-  console.log("Function processDataJSON called");
+x;
+var processData = function (startMonth, endMonth, JSONobj) {
+  console.log("Function processData called");
   var totalSolarRadiation = 0; // w/m^2
   var totalWindSpeed = 0; // m/s
   var count = 0;
@@ -80,7 +102,7 @@ var processDataJSON = function (obj, startMonth, endMonth) {
   var solarRadiationMap = new Map();
   var windSpeedMap = new Map();
 
-  var objLength = obj.weather.record.length; // Object --> Weather --> Record
+  var objLength = JSONobj.weather.record.length; // Object --> Weather --> Record
 
   for (var i = startMonth; i <= endMonth; i++) {
     // For each month
@@ -91,32 +113,35 @@ var processDataJSON = function (obj, startMonth, endMonth) {
 
     for (var j = 0; j < objLength; j++) {
       // For record in the object
-      var month = parseInt(obj.weather.record[j].date.substring(3, 5)); // Get the int value of the month dd/mm/yyyy
+      var month = parseInt(JSONobj.weather.record[j].date.substring(3, 5)); // Get the int value of the month dd/mm/yyyy
       if (month == i) {
         count++;
-        if (obj.weather.record[j].sr >= 100) {
+        if (JSONobj.weather.record[j].sr >= 100) {
           // Only take in readings >= W/m^2
-          totalSolarRadiation += obj.weather.record[j].sr;
+          totalSolarRadiation += JSONobj.weather.record[j].sr;
         }
-        totalWindSpeed += obj.weather.record[j].ws;
+        totalWindSpeed += JSONobj.weather.record[j].ws;
       }
     }
-    solarRadiationConverted = totalSolarRadiation / 1000 / 60;
-    solarRadiationConverted = solarRadiationConverted.toFixed(2);
+    solarRadiationConverted = totalSolarRadiation / 1000 / 60; // Formula given
+    solarRadiationConverted = solarRadiationConverted.toFixed(2); // 2 dp
 
-    avgWindSpeed = totalWindSpeed / count;
-    avgWindSpeedConverted = (avgWindSpeed * 60 * 60) / 1000;
-    avgWindSpeedConverted = avgWindSpeedConverted.toFixed(2);
+    avgWindSpeed = totalWindSpeed / count; // To find average
+    avgWindSpeedConverted = (avgWindSpeed * 60 * 60) / 1000; // Formula given
+    avgWindSpeedConverted = avgWindSpeedConverted.toFixed(2); // 2 dp
 
+    // Store into a map
     solarRadiationMap[i] = solarRadiationConverted;
     windSpeedMap[i] = avgWindSpeedConverted;
   }
 
+  // Return both map as an object
   var toReturn = {
     sr: solarRadiationMap,
     ws: windSpeedMap,
   };
-  console.log("End of processDataJSON");
+
+  console.log("End of processData ...");
   return toReturn;
 };
 
