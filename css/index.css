@@ -4,7 +4,7 @@ body {
 }
 
 .body-container {
-  width: 55%;
+  width: 65%;
   margin: 0 auto;
   text-align: center;
   color: #293241;
@@ -17,12 +17,17 @@ body {
 
 .form-container {
   text-align: center;
-  margin: 5%;
+  margin: 4%;
   background-color: #98c1d9;
   color: #293241;
-  padding: 3%;
-  width: 50%;
+  padding: 3% 3% 2% 3%;
   border-radius: 1em;
+}
+
+.form-form-container {
+  text-align: center;
+  margin: 0 auto;
+  width: 90%;
 }
 
 .form-container label {
@@ -35,8 +40,10 @@ body {
   outline: 0;
   font-size: 15px;
   width: 100%;
-  -webkit-appearance: none;
+  border-radius: 1em;
   -moz-appearance: none;
+  -webkit-appearance: none;
+  text-indent: 1px;
 }
 
 .form-container button {
