@@ -89,7 +89,7 @@ function search(req, res) {
     }
   });
 }
-x;
+
 var processData = function (startMonth, endMonth, JSONobj) {
   console.log("Function processData called");
   var totalSolarRadiation = 0; // w/m^2
