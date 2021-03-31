@@ -14,7 +14,7 @@ $(function () {
     console.log(inputYear);
     console.log(inputOutput);
 
-    if (inputStartMonth > inputEndMonth) {
+    if (parseInt(inputStartMonth) > parseInt(inputEndMonth)) {
       alert("Starting month should be before ending month!");
     } else {
       const obj = {
@@ -26,9 +26,8 @@ $(function () {
       console.log(json);
 
       $.post("/search", json, function (data) {
-        console.log(data);
         const objJSON = JSON.parse(data);
-        console.log(objJSON);
+        console.log(data);
       });
     }
   });

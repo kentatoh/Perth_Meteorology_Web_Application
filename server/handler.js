@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const request = require("request");
-const xml = require("xml2json");
+const parser = require("xml2json");
 
 function reqStart(req, res) {
   console.log("Start function was called");
@@ -55,9 +55,9 @@ function search(req, res) {
           if (!error && response.statusCode == 200) {
             // No error and good status code
             console.log("Retrieving XML file ...");
-            var data = xml.toJson(body); // XML data to JSON using xml2json module
+            var data = parser.toJson(body); // XML data to JSON using xml2json module
             var objJSON = JSON.parse(data); // Parse JSON to JSON object
-            var processedObj = processData(startMonth, endMonth, objJSON); // Process the JSON object
+            var processedObj = processData(startMonth, endMonth, objJSON, 1); // 1 to indicate XML file
             var toReturn = JSON.stringify(processedObj); // Return to client as a string
             res.end(toReturn);
           } else {
@@ -77,7 +77,7 @@ function search(req, res) {
             // No error and good status code
             console.log("Retrieving JSON file ...");
             var objJSON = JSON.parse(body); // Parse JSON into JSON object
-            var processedObj = processData(startMonth, endMonth, objJSON);
+            var processedObj = processData(startMonth, endMonth, objJSON, 0); // 0 to indicate JSON file
             var toReturn = JSON.stringify(processedObj);
             res.end(toReturn);
           } else {
@@ -90,7 +90,8 @@ function search(req, res) {
   });
 }
 
-var processData = function (startMonth, endMonth, JSONobj) {
+var processData = function (startMonth, endMonth, JSONobj, flag) {
+  // Processing the data, with the starting month, ending month, json object, and the flag to determine if the data is from the XML or JSON file
   console.log("Function processData called");
   var totalSolarRadiation = 0; // w/m^2
   var totalWindSpeed = 0; // m/s
@@ -116,11 +117,20 @@ var processData = function (startMonth, endMonth, JSONobj) {
       var month = parseInt(JSONobj.weather.record[j].date.substring(3, 5)); // Get the int value of the month dd/mm/yyyy
       if (month == i) {
         count++;
-        if (JSONobj.weather.record[j].sr >= 100) {
-          // Only take in readings >= W/m^2
-          totalSolarRadiation += JSONobj.weather.record[j].sr;
+        if (flag == 1) {
+          // XML file stored the ws and sr as string, while JSON file stored ws and sr as integer
+          if (JSONobj.weather.record[j].sr >= 100) {
+            // Only take in readings >= W/m^2
+            totalSolarRadiation += parseInt(JSONobj.weather.record[j].sr);
+          }
+          totalWindSpeed += parseInt(JSONobj.weather.record[j].ws);
+        } else {
+          if (JSONobj.weather.record[j].sr >= 100) {
+            // Only take in readings >= W/m^2
+            totalSolarRadiation += JSONobj.weather.record[j].sr;
+          }
+          totalWindSpeed += JSONobj.weather.record[j].ws;
         }
-        totalWindSpeed += JSONobj.weather.record[j].ws;
       }
     }
     solarRadiationConverted = totalSolarRadiation / 1000 / 60; // Formula given
