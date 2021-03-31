@@ -100,8 +100,8 @@ var processData = function (startMonth, endMonth, JSONobj, flag) {
   var solarRadiationConverted = 0; // kWh/m^2
   var avgWindSpeedConverted = 0; // km/h
 
-  var solarRadiationMap = new Map();
-  var windSpeedMap = new Map();
+  var solarRadiationArr = [];
+  var windSpeedMapArr = [];
 
   var objLength = JSONobj.weather.record.length; // Object --> Weather --> Record
 
@@ -141,14 +141,14 @@ var processData = function (startMonth, endMonth, JSONobj, flag) {
     avgWindSpeedConverted = avgWindSpeedConverted.toFixed(2); // 2 dp
 
     // Store into a map
-    solarRadiationMap[i] = solarRadiationConverted;
-    windSpeedMap[i] = avgWindSpeedConverted;
+    solarRadiationArr.push(solarRadiationConverted);
+    windSpeedMapArr.push(avgWindSpeedConverted);
   }
 
   // Return both map as an object
   var toReturn = {
-    sr: solarRadiationMap,
-    ws: windSpeedMap,
+    sr: solarRadiationArr,
+    ws: windSpeedMapArr,
   };
 
   console.log("End of processData ...");
