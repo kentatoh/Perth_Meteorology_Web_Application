@@ -5,6 +5,8 @@ $(document).ready(function () {
 
 $(function () {
   $("#submit").on("click", function (event) {
+    $(".table-container").hide();
+    $(".graph-container").hide();
     event.preventDefault();
 
     var inputMeasurement = $("#measurement").val();
@@ -67,7 +69,7 @@ $(function () {
 const createTable = (data, startMonth, endMonth, dataType) => {
   $("table").remove();
   var table =
-    "<table>" +
+    "<div style='overflow-x:auto;'><table>" +
     "<tr>" +
     "<th></th>" +
     "<th>Jan</th>" +
@@ -126,7 +128,7 @@ const createTable = (data, startMonth, endMonth, dataType) => {
     table += windspeed;
     table += solarradiation;
   }
-  table += "<table>";
+  table += "</table></div>";
 
   $(".table-container").show();
   $(".table-format").append(table);

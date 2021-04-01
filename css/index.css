@@ -1,5 +1,5 @@
 body {
-  font-family: Helvetica, sans-serif;
+  font-family: Helvetica, sans-serif !important;
   background-color: #e0fbfc !important;
 }
 
@@ -74,6 +74,13 @@ body {
   background-color: #98c1d9;
   border-radius: 1em;
   margin: 7% 0 7% 0;
+  padding: 2% 0 5% 0;
+}
+
+.table-container h1,
+.graph-container h1 {
+  color: #293241;
+  padding: 2%;
 }
 
 .table-format {
@@ -81,16 +88,23 @@ body {
   text-align: center;
   display: inline-block;
   background-color: #e0fbfc;
+  width: 95%;
 }
 
 .table-format table {
   color: #293241;
-  background-color: #e0fbfc;
-  border-radius: 0.5em;
+  width: 100%;
+  max-width: 100%;
+}
+
+.table-format th {
+  background-color: #3d5a80;
+  color: white;
 }
 
 .graph-container {
   width: 100%;
   background-color: #98c1d9;
   border-radius: 1em;
+  margin: 7% 0 2% 0;
 }
