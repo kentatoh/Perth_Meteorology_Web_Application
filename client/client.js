@@ -1,5 +1,6 @@
 $(document).ready(function () {
   $(".table-container").hide();
+  $(".graph-container").hide();
 });
 
 $(function () {
@@ -33,10 +34,10 @@ $(function () {
         const objJSON = JSON.parse(data);
         console.log(objJSON);
 
-        if (inputMeasurement === "table") {
+        if (inputOutput === "table") {
           $("graph-container").hide();
           createTable(objJSON, inputOutput);
-        } else if (inputMeasurement === "graph") {
+        } else if (inputOutput === "graph") {
           $("table-container").hide();
           createGraph(
             objJSON,
@@ -133,4 +134,105 @@ const createTable = (data, startMonth, endMonth, dataType) => {
 
 const createGraph = (data, startMonth, endMonth, dataType) => {
   var ctx = document.getElementById("myChart").getContext("2d");
+
+  var months = [
+    "January",
+    "Feburary",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  var windspeedData = [];
+
+  var wsIterator = 0;
+  for (let i = 1; i <= 12; i++) {
+    if (i < startMonth || i > endMonth) {
+      windspeedData.push({ x: months[i - 1], y: 0 });
+    } else {
+      if (data.ws[wsIterator] == "NaN" || data.ws[wsIterator] <= 0) {
+        windspeedData.push({ x: months[i - 1], y: 0 });
+      } else {
+        windspeedData.push({ x: months[i - 1], y: data.ws[wsIterator] });
+      }
+      wsIterator++;
+    }
+  }
+
+  var solarradiationData = [];
+
+  var srIterator = 0;
+  for (let i = 1; i <= 12; i++) {
+    if (i < startMonth || i > endMonth) {
+      solarradiationData.push("");
+    } else {
+      if (data.sr[srIterator] == "NaN" || data.sr[srIterator] <= 0) {
+        solarradiationData.push(0);
+      } else {
+        solarradiationData.push(data.sr[srIterator]);
+      }
+      srIterator++;
+    }
+  }
+
+  if (dataType == "windspeed") {
+    var chart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: months,
+        datasets: [
+          {
+            data: windspeedData,
+            backgroundColor: "#e0fbfc",
+            label: "Wind Speed (km/h)",
+            borderColor: "#e0fbfc",
+          },
+        ],
+      },
+    });
+  } else if (dataType == "solarradiation") {
+    var chart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: months,
+        datasets: [
+          {
+            data: solarradiationData,
+            backgroundColor: "#ee6c4d",
+            label: "Solar Radiation (kWh/m2)",
+            borderColor: "#ee6c4d",
+          },
+        ],
+      },
+    });
+  } else {
+    var chart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: months,
+        datasets: [
+          {
+            data: solarradiationData,
+            backgroundColor: "#ee6c4d",
+            label: "Solar Radiation (kWh/m2)",
+            borderColor: "#ee6c4d",
+          },
+          {
+            data: windspeedData,
+            backgroundColor: "#e0fbfc",
+            label: "Wind Speed (km/h)",
+            borderColor: "#e0fbfc",
+          },
+        ],
+      },
+    });
+  }
+  $(".graph-container").show();
 };

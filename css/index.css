@@ -72,12 +72,15 @@ body {
 .table-container {
   width: 100%;
   background-color: #98c1d9;
+  border-radius: 1em;
+  margin: 7% 0 7% 0;
 }
 
 .table-format {
   margin: 0 auto;
   text-align: center;
   display: inline-block;
+  background-color: #e0fbfc;
 }
 
 .table-format table {
@@ -87,5 +90,7 @@ body {
 }
 
 .graph-container {
-  background-color: yellow;
+  width: 100%;
+  background-color: #98c1d9;
+  border-radius: 1em;
 }
