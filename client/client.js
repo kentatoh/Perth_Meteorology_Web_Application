@@ -38,10 +38,25 @@ $(function () {
           createTable(objJSON, inputOutput);
         } else if (inputMeasurement === "graph") {
           $("table-container").hide();
-          createGraph(objJSON, inputStartMonth, inputEndMonth, inputOutput);
+          createGraph(
+            objJSON,
+            inputStartMonth,
+            inputEndMonth,
+            inputMeasurement
+          );
         } else {
-          createTable(objJSON, inputStartMonth, inputEndMonth, inputOutput);
-          createGraph(objJSON, inputStartMonth, inputEndMonth, inputOutput);
+          createTable(
+            objJSON,
+            inputStartMonth,
+            inputEndMonth,
+            inputMeasurement
+          );
+          createGraph(
+            objJSON,
+            inputStartMonth,
+            inputEndMonth,
+            inputMeasurement
+          );
         }
       });
     }
@@ -79,7 +94,6 @@ const createTable = (data, startMonth, endMonth, dataType) => {
         windspeed += "<td>No data</td>";
       } else {
         windspeed += `<td>${data.ws[wsIterator]}</td>`;
-        console.log(data.ws[wsIterator]);
       }
       wsIterator++;
     }
@@ -97,25 +111,26 @@ const createTable = (data, startMonth, endMonth, dataType) => {
         solarradiation += "<td>No data</td>";
       } else {
         solarradiation += `<td>${data.sr[srIterator]}</td>`;
-        console.log(data.sr[srIterator]);
       }
       srIterator++;
     }
   }
   solarradiation += "</tr>";
 
-  if (dataType === "windspeed") {
+  if (dataType == "windspeed") {
     table += windspeed;
-  } else if (dataType === "solarradiation") {
+  } else if (dataType == "solarradiation") {
     table += solarradiation;
   } else {
     table += windspeed;
     table += solarradiation;
   }
   table += "<table>";
-  console.log(table);
+
   $(".table-container").show();
   $(".table-format").append(table);
 };
 
-const createGraph = () => {};
+const createGraph = (data, startMonth, endMonth, dataType) => {
+  var ctx = document.getElementById("myChart").getContext("2d");
+};
