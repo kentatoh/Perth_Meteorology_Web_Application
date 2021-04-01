@@ -70,7 +70,20 @@ body {
 }
 
 .table-container {
-  background-color: green;
+  width: 100%;
+  background-color: #98c1d9;
+}
+
+.table-format {
+  margin: 0 auto;
+  text-align: center;
+  display: inline-block;
+}
+
+.table-format table {
+  color: #293241;
+  background-color: #e0fbfc;
+  border-radius: 0.5em;
 }
 
 .graph-container {

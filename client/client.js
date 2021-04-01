@@ -1,3 +1,7 @@
+$(document).ready(function () {
+  $(".table-container").hide();
+});
+
 $(function () {
   $("#submit").on("click", function (event) {
     event.preventDefault();
@@ -65,25 +69,37 @@ const createTable = (data, startMonth, endMonth, dataType) => {
     "</tr>";
 
   var windspeed = "";
-  windspeed += "<tr><td>Wind Speed km/h </td>";
+  windspeed += "<tr><td>Wind Speed km/h</td>";
+  var wsIterator = 0;
   for (let i = 1; i <= 12; i++) {
     if (i < startMonth || i > endMonth) {
-      windspeed += "<td><td>";
+      windspeed += "<td></td>";
     } else {
-      windspeed += `<td>${data.ws[i - 1]}</td>`;
-      console.log(data.ws[i - 1]);
+      if (data.ws[wsIterator] == "NaN" || data.ws[wsIterator] <= 0) {
+        windspeed += "<td>No data</td>";
+      } else {
+        windspeed += `<td>${data.ws[wsIterator]}</td>`;
+        console.log(data.ws[wsIterator]);
+      }
+      wsIterator++;
     }
   }
   windspeed += "</tr>";
 
   var solarradiation = "";
   solarradiation += "<tr><td>Solar Radiation kWh/m<sup>2</sup></td>";
+  var srIterator = 0;
   for (let i = 1; i <= 12; i++) {
     if (i < startMonth || i > endMonth) {
-      solarradiation += "<td><td>";
+      solarradiation += "<td></td>";
     } else {
-      solarradiation += `<td>${data.sr[i - 1]}</td>`;
-      console.log(data.sr[i - 1]);
+      if (data.sr[srIterator] == "NaN" || data.sr[srIterator] <= 0) {
+        solarradiation += "<td>No data</td>";
+      } else {
+        solarradiation += `<td>${data.sr[srIterator]}</td>`;
+        console.log(data.sr[srIterator]);
+      }
+      srIterator++;
     }
   }
   solarradiation += "</tr>";
@@ -98,7 +114,8 @@ const createTable = (data, startMonth, endMonth, dataType) => {
   }
   table += "<table>";
   console.log(table);
-  $(".table-container").append(table);
+  $(".table-container").show();
+  $(".table-format").append(table);
 };
 
 const createGraph = () => {};
