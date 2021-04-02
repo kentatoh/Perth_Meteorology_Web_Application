@@ -38,7 +38,12 @@ $(function () {
 
         if (inputOutput === "table") {
           $("graph-container").hide();
-          createTable(objJSON, inputOutput);
+          createTable(
+            objJSON,
+            inputStartMonth,
+            inputEndMonth,
+            inputMeasurement
+          );
         } else if (inputOutput === "graph") {
           $("table-container").hide();
           createGraph(
@@ -107,7 +112,7 @@ const createTable = (data, startMonth, endMonth, dataType) => {
   solarradiation += "<tr><td>Solar Radiation kWh/m<sup>2</sup></td>";
   var srIterator = 0;
   for (let i = 1; i <= 12; i++) {
-    if (i < startMonth || i > endMonth) {
+    if (i <= startMonth || i > endMonth) {
       solarradiation += "<td></td>";
     } else {
       if (data.sr[srIterator] == "NaN" || data.sr[srIterator] <= 0) {
