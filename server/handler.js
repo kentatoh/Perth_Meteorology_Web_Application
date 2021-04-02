@@ -28,6 +28,13 @@ function clientJS(req, res) {
   fs.createReadStream("../client/client.js").pipe(res);
 }
 
+function reqLoadingImage(req, res) {
+  console.log("Loading Image function was called");
+  res.writeHead(200, {
+    "Content-Type": "image/gif",
+  });
+  fs.createReadStream("../images/loading.gif").pipe(res);
+}
 function search(req, res) {
   console.log("Search function was called");
 
@@ -167,5 +174,6 @@ function error(req, res) {
 exports.reqStart = reqStart;
 exports.indexCSS = indexCSS;
 exports.clientJS = clientJS;
+exports.reqLoadingImage = reqLoadingImage;
 exports.search = search;
 exports.error = error;

@@ -9,6 +9,7 @@ var handle = {
   "/indexCSS": handlers.indexCSS,
   "/clientJS": handlers.clientJS,
   "/search": handlers.search,
+  "/reqLoadingImage": handlers.reqLoadingImage,
   error: handlers.error,
 };
 

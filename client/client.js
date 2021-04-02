@@ -1,10 +1,12 @@
 $(document).ready(function () {
   $(".table-container").hide();
   $(".graph-container").hide();
+  $(".loader").hide();
 });
 
 $(function () {
   $("#submit").on("click", function (event) {
+    $(".loader").show();
     $(".table-container").hide();
     $(".graph-container").hide();
     event.preventDefault();
@@ -113,7 +115,7 @@ const createTable = (data, startMonth, endMonth, dataType) => {
   var srIterator = 0;
   for (let i = 1; i <= 12; i++) {
     if (i < startMonth || i > endMonth) {
-      solarradiation += "<td></td>";
+      solarradiation += "<td>&nbsp;</td>";
     } else {
       if (data.sr[srIterator] == "NaN" || data.sr[srIterator] <= 0) {
         solarradiation += "<td>No data</td>";
@@ -137,6 +139,7 @@ const createTable = (data, startMonth, endMonth, dataType) => {
 
   $(".table-container").show();
   $(".table-format").append(table);
+  $(".loader").hide();
 };
 
 const createGraph = (data, startMonth, endMonth, dataType) => {
@@ -242,4 +245,5 @@ const createGraph = (data, startMonth, endMonth, dataType) => {
     });
   }
   $(".graph-container").show();
+  $(".loader").hide();
 };
