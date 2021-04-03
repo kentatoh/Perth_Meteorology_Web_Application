@@ -121,11 +121,6 @@ body {
 .table-format th {
   background-color: #3d5a80;
   color: white;
-  padding: 1px;
-}
-
-.table-format td {
-  padding: 10px;
 }
 
 .graph-container {
