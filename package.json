@@ -2,6 +2,8 @@
   "dependencies": {
     "chart.js": "^2.9.4",
     "chartjs": "^0.3.24",
+    "i": "^0.3.6",
+    "npm": "^7.8.0",
     "request": "^2.88.2",
     "xml2json": "^0.12.0"
   }
