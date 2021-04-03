@@ -55,6 +55,8 @@ $(function () {
             inputMeasurement
           );
         } else {
+          $("table-container").show();
+          $("table-container").show();
           createTable(
             objJSON,
             inputStartMonth,
