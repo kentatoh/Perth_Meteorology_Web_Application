@@ -201,9 +201,10 @@ const createGraph = (data, startMonth, endMonth, dataType) => {
         datasets: [
           {
             data: windspeedData,
-            backgroundColor: "#e0fbfc",
+            backgroundColor: "rgba(224,251,252, 0.5)",
             label: "Wind Speed (km/h)",
             borderColor: "#e0fbfc",
+            fill: true,
           },
         ],
       },
@@ -216,9 +217,10 @@ const createGraph = (data, startMonth, endMonth, dataType) => {
         datasets: [
           {
             data: solarradiationData,
-            backgroundColor: "#ee6c4d",
+            backgroundColor: "rgba(238,108,77, 0.5)",
             label: "Solar Radiation (kWh/m2)",
             borderColor: "#ee6c4d",
+            fill: true,
           },
         ],
       },
@@ -231,15 +233,17 @@ const createGraph = (data, startMonth, endMonth, dataType) => {
         datasets: [
           {
             data: solarradiationData,
-            backgroundColor: "#ee6c4d",
+            backgroundColor: "rgba(238,108,77, 0.5)",
             label: "Solar Radiation (kWh/m2)",
             borderColor: "#ee6c4d",
+            fill: true,
           },
           {
             data: windspeedData,
-            backgroundColor: "#e0fbfc",
+            backgroundColor: "rgba(224,251,252, 0.5)",
             label: "Wind Speed (km/h)",
             borderColor: "#e0fbfc",
+            fill: true,
           },
         ],
       },
