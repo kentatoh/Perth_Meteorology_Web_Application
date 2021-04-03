@@ -38,7 +38,7 @@ $(function () {
         const objJSON = JSON.parse(data);
         console.log(objJSON);
 
-        if (inputOutput === "table") {
+        if (inputOutput == "table") {
           $("graph-container").hide();
           createTable(
             objJSON,
@@ -46,7 +46,7 @@ $(function () {
             inputEndMonth,
             inputMeasurement
           );
-        } else if (inputOutput === "graph") {
+        } else if (inputOutput == "graph") {
           $("table-container").hide();
           createGraph(
             objJSON,
@@ -145,8 +145,6 @@ const createTable = (data, startMonth, endMonth, dataType) => {
 };
 
 const createGraph = (data, startMonth, endMonth, dataType) => {
-  var ctx = document.getElementById("myChart").getContext("2d");
-
   var months = [
     "January",
     "Feburary",
@@ -161,44 +159,40 @@ const createGraph = (data, startMonth, endMonth, dataType) => {
     "November",
     "December",
   ];
+  startMonth = parseInt(startMonth);
+  endMonth = parseInt(endMonth);
+
+  var monthsRange = [];
+
+  for (let i = startMonth; i <= endMonth; i++) {
+    monthsRange.push(months[i - 1]);
+  }
 
   var windspeedData = [];
-
-  var wsIterator = 0;
-  for (let i = 1; i <= 12; i++) {
-    if (i < startMonth || i > endMonth) {
-      windspeedData.push({ x: months[i - 1], y: 0 });
+  for (let i = 0; i < monthsRange.length; i++) {
+    if (data.ws[i] == "NaN" || data.ws[i] <= 0) {
+      windspeedData.push({ x: monthsRange[i], y: 0 });
     } else {
-      if (data.ws[wsIterator] == "NaN" || data.ws[wsIterator] <= 0) {
-        windspeedData.push({ x: months[i - 1], y: 0 });
-      } else {
-        windspeedData.push({ x: months[i - 1], y: data.ws[wsIterator] });
-      }
-      wsIterator++;
+      windspeedData.push({ x: monthsRange[i], y: data.ws[i] });
     }
   }
 
   var solarradiationData = [];
-
-  var srIterator = 0;
-  for (let i = 1; i <= 12; i++) {
-    if (i < startMonth || i > endMonth) {
-      solarradiationData.push("");
+  for (let i = 0; i < monthsRange.length; i++) {
+    if (data.sr[i] == "NaN" || data.sr[i] <= 0) {
+      solarradiationData.push({ x: monthsRange[i], y: 0 });
     } else {
-      if (data.sr[srIterator] == "NaN" || data.sr[srIterator] <= 0) {
-        solarradiationData.push(0);
-      } else {
-        solarradiationData.push(data.sr[srIterator]);
-      }
-      srIterator++;
+      solarradiationData.push({ x: monthsRange[i], y: data.sr[i] });
     }
   }
+
+  var ctx = document.getElementById("myChart").getContext("2d");
 
   if (dataType == "windspeed") {
     var chart = new Chart(ctx, {
       type: "line",
       data: {
-        labels: months,
+        labels: monthsRange,
         datasets: [
           {
             data: windspeedData,
@@ -213,7 +207,7 @@ const createGraph = (data, startMonth, endMonth, dataType) => {
     var chart = new Chart(ctx, {
       type: "line",
       data: {
-        labels: months,
+        labels: monthsRange,
         datasets: [
           {
             data: solarradiationData,
@@ -228,7 +222,7 @@ const createGraph = (data, startMonth, endMonth, dataType) => {
     var chart = new Chart(ctx, {
       type: "line",
       data: {
-        labels: months,
+        labels: monthsRange,
         datasets: [
           {
             data: solarradiationData,
