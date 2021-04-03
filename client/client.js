@@ -6,7 +6,6 @@ $(document).ready(function () {
 
 $(function () {
   $("#submit").on("click", function (event) {
-    $(".loader").show();
     $(".table-container").hide();
     $(".graph-container").hide();
     event.preventDefault();
@@ -26,6 +25,7 @@ $(function () {
     if (parseInt(inputStartMonth) > parseInt(inputEndMonth)) {
       alert("Starting month should be before ending month!");
     } else {
+      $(".loader").show();
       const obj = {
         year: inputYear,
         startMonth: inputStartMonth,
