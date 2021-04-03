@@ -65,6 +65,8 @@ body {
   -moz-appearance: none;
   -webkit-appearance: none;
   text-indent: 1px;
+  background: url("reqDropdownArrowImage") no-repeat right #fff;
+  background-position-x: 95%;
 }
 
 .form-container button {

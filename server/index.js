@@ -10,6 +10,7 @@ var handle = {
   "/clientJS": handlers.clientJS,
   "/search": handlers.search,
   "/reqLoadingImage": handlers.reqLoadingImage,
+  "/reqDropdownArrowImage": handlers.reqDropdownArrowImage,
   error: handlers.error,
 };
 

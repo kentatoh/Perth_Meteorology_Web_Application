@@ -35,6 +35,15 @@ function reqLoadingImage(req, res) {
   });
   fs.createReadStream("../images/loading.gif").pipe(res);
 }
+
+function reqDropdownArrowImage(req, res) {
+  console.log("Dropdown Arrow Image function was called");
+  res.writeHead(200, {
+    "Content-Type": "image/gif",
+  });
+  fs.createReadStream("../images/dropdown-arrow.png").pipe(res);
+}
+
 function search(req, res) {
   console.log("Search function was called");
 
@@ -175,5 +184,6 @@ exports.reqStart = reqStart;
 exports.indexCSS = indexCSS;
 exports.clientJS = clientJS;
 exports.reqLoadingImage = reqLoadingImage;
+exports.reqDropdownArrowImage = reqDropdownArrowImage;
 exports.search = search;
 exports.error = error;
