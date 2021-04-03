@@ -56,7 +56,7 @@ $(function () {
           );
         } else {
           $("table-container").show();
-          $("table-container").show();
+          $("graph-container").show();
           createTable(
             objJSON,
             inputStartMonth,
