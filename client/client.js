@@ -39,7 +39,7 @@ $(function () {
         console.log(objJSON);
 
         if (inputOutput == "table") {
-          $("graph-container").hide();
+          $(".graph-container").hide();
           createTable(
             objJSON,
             inputStartMonth,
@@ -47,7 +47,7 @@ $(function () {
             inputMeasurement
           );
         } else if (inputOutput == "graph") {
-          $("table-container").hide();
+          $(".table-container").hide();
           createGraph(
             objJSON,
             inputStartMonth,
@@ -55,8 +55,8 @@ $(function () {
             inputMeasurement
           );
         } else {
-          $("table-container").show();
-          $("graph-container").show();
+          $(".table-container").show();
+          $(".graph-container").show();
           createTable(
             objJSON,
             inputStartMonth,
@@ -145,6 +145,10 @@ const createTable = (data, startMonth, endMonth, dataType) => {
 };
 
 const createGraph = (data, startMonth, endMonth, dataType) => {
+  // To ensure new graph is displayed
+  $("#myChart").remove();
+  $(".graph-container").append("<canvas id='myChart'></canvas>");
+
   var months = [
     "January",
     "Feburary",
@@ -159,6 +163,7 @@ const createGraph = (data, startMonth, endMonth, dataType) => {
     "November",
     "December",
   ];
+
   startMonth = parseInt(startMonth);
   endMonth = parseInt(endMonth);
 
@@ -189,7 +194,7 @@ const createGraph = (data, startMonth, endMonth, dataType) => {
   var ctx = document.getElementById("myChart").getContext("2d");
 
   if (dataType == "windspeed") {
-    var chart = new Chart(ctx, {
+    let chart = new Chart(ctx, {
       type: "line",
       data: {
         labels: monthsRange,
@@ -204,7 +209,7 @@ const createGraph = (data, startMonth, endMonth, dataType) => {
       },
     });
   } else if (dataType == "solarradiation") {
-    var chart = new Chart(ctx, {
+    let chart = new Chart(ctx, {
       type: "line",
       data: {
         labels: monthsRange,
@@ -219,7 +224,7 @@ const createGraph = (data, startMonth, endMonth, dataType) => {
       },
     });
   } else {
-    var chart = new Chart(ctx, {
+    let chart = new Chart(ctx, {
       type: "line",
       data: {
         labels: monthsRange,
