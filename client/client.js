@@ -205,9 +205,6 @@ const createGraph = (data, startMonth, endMonth, dataType) => {
             label: "Wind Speed (km/h)",
             borderColor: "#e0fbfc",
             fill: true,
-            option: {
-              responsive: true,
-            },
           },
         ],
       },
@@ -224,9 +221,6 @@ const createGraph = (data, startMonth, endMonth, dataType) => {
             label: "Solar Radiation (kWh/m2)",
             borderColor: "#ee6c4d",
             fill: true,
-            option: {
-              responsive: true,
-            },
           },
         ],
       },
@@ -243,9 +237,6 @@ const createGraph = (data, startMonth, endMonth, dataType) => {
             label: "Solar Radiation (kWh/m2)",
             borderColor: "#ee6c4d",
             fill: true,
-            option: {
-              responsive: true,
-            },
           },
           {
             data: windspeedData,
@@ -253,9 +244,6 @@ const createGraph = (data, startMonth, endMonth, dataType) => {
             label: "Wind Speed (km/h)",
             borderColor: "#e0fbfc",
             fill: true,
-            option: {
-              responsive: true,
-            },
           },
         ],
       },
