@@ -137,9 +137,9 @@ var processData = function (startMonth, endMonth, JSONobj, flag) {
           // XML file stored the ws and sr as string, while JSON file stored ws and sr as integer
           if (JSONobj.weather.record[j].sr >= 100) {
             // Only take in readings >= W/m^2
-            totalSolarRadiation += parseInt(JSONobj.weather.record[j].sr);
+            totalSolarRadiation += parseFloat(JSONobj.weather.record[j].sr);
           }
-          totalWindSpeed += parseInt(JSONobj.weather.record[j].ws);
+          totalWindSpeed += parseFloat(JSONobj.weather.record[j].ws);
         } else {
           if (JSONobj.weather.record[j].sr >= 100) {
             // Only take in readings >= W/m^2
